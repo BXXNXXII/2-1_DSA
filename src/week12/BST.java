@@ -8,22 +8,24 @@ public class BST {
 	class Node {
 		int key;
 		Node left, right;
-		
-		Node(int d){
+
+		Node(int d) {
 			key = d;
 			left = null;
 			right = null;
 		}
 
-	public String toString() {return "" + key + " ";}
+		public String toString() {
+			return "" + key + " ";
+		}
 	}
-	
+
 	Node root;
-	
+
 	public BST() {
-		root=null;
+		root = null;
 	}
-	
+
 	public void insert(int d) {
 		if (root == null) {
 			root = new Node(d);
@@ -56,8 +58,7 @@ public class BST {
 		if (d < node.key) {
 			node.left = insert(node.left, d);
 			return node;
-		}
-		else {
+		} else {
 			node.right = insert(node.right, d);
 			return node;
 		}
@@ -76,7 +77,7 @@ public class BST {
 			showTree(p.right);
 		}
 	}
-	
+
 	public boolean search(int d) {
 		return search(root, d);
 	}
@@ -90,8 +91,7 @@ public class BST {
 		}
 		if (d < node.key) {
 			return search(node.left, d);
-		}
-		else {
+		} else {
 			return search(node.right, d);
 		}
 	}
@@ -104,20 +104,17 @@ public class BST {
 			parent = node;
 			if (d < node.key) {
 				node = node.left;
-			}
-			else {
+			} else {
 				node = node.right;
 			}
 		}
 		if (node != null) { // node.key == d
 			if (node == root) {
 				root = deleteANode(root);
-			}
-			else {
+			} else {
 				if (node.key < parent.key) {
 					parent.left = deleteANode(node);
-				}
-				else {
+				} else {
 					parent.right = deleteANode(node);
 				}
 			}
@@ -176,18 +173,18 @@ public class BST {
 	}
 
 	public static void main(String[] args) {
-		int [] keys = {4,7,5,1,0,3,9,2,6,8};
+		int[] keys = {4, 7, 5, 1, 0, 3, 9, 2, 6, 8};
 
 		BST t = new BST();
-		
-		for (int i=0; i<keys.length;i++) {
+
+		for (int i = 0; i < keys.length; i++) {
 			t.insert(keys[i]);
 			t.showTree();
 		}
-		
+
 		System.out.println(t.search(3));
 		System.out.println(t.search(11));
-		
+
 		t.delete(3);
 		System.out.println("\nAfter delete 3 (case2 : only left child)");
 		t.showTree();
